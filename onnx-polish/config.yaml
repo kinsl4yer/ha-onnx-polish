@@ -1,6 +1,6 @@
 name: "ONNX ASR Polish"
 description: "Parakeet TDT 0.6B Polish fine-tuned model (Wyoming)"
-version: "1.0.3"
+version: "1.0.4"
 slug: onnx_polish
 init: false
 arch:
