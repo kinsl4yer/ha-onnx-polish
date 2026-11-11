@@ -22,6 +22,6 @@ Parakeet TDT 0.6B model fine-tuned for Polish language.
 
 ## Notes
 
-- First start will download the model (~600-800 MB)
+- First start will download the model (~2 GB)
 - After starting, add it as Speech-to-text in your Voice Assistant pipeline
 - Set language to Polish
