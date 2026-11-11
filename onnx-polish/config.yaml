@@ -1,6 +1,6 @@
 name: "ONNX ASR Polish"
-description: "Parakeet TDT 0.6B Polish fine-tuned model (Wyoming)"
-version: "1.0.4"
+description: "Parakeet + FastConformer Polish models (Wyoming)"
+version: "1.1.0"
 slug: onnx_polish
 init: false
 arch:
@@ -9,15 +9,17 @@ arch:
 startup: services
 ports:
   10300/tcp: 10300
+  10301/tcp: 10301
 ports_description:
-  10300/tcp: "Wyoming Protocol"
+  10300/tcp: "Parakeet (Wyoming)"
+  10301/tcp: "FastConformer (Wyoming)"
 options:
-  model: "OpenVoiceOS/yuriyvnv-parakeet-tdt-0.6b-pl-onnx"
-  languages: "pl"
-  default_language: "pl"
-  quantization: "int8"
+  parakeet_model: "OpenVoiceOS/yuriyvnv-parakeet-tdt-0.6b-pl-onnx"
+  fastconformer_model: "OpenVoiceOS/stt_pl_fastconformer_hybrid_large_pc_onnx"
+  quantization_parakeet: "int8"
+  quantization_fastconformer: "none"
 schema:
-  model: str
-  languages: str
-  default_language: str
-  quantization: list(none|int8|fp16)
+  parakeet_model: str
+  fastconformer_model: str
+  quantization_parakeet: list(none|int8|fp16)
+  quantization_fastconformer: list(none|int8|fp16)
