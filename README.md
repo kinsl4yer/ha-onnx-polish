@@ -4,7 +4,7 @@ Parakeet TDT 0.6B model fine-tuned for Polish language.
 
 ## Installation
 
-1. Go to **Settings → Add-ons → Add-on Store**
+1. Go to **Settings → Apps → Install apps*
 2. Click the **⋮** menu → **Repositories**
 3. Add this repository URL
 4. Find **ONNX ASR Polish** and install it
