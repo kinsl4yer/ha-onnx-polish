@@ -1,0 +1,23 @@
+name: "ONNX ASR Polish"
+description: "Parakeet TDT 0.6B Polish fine-tuned model (Wyoming)"
+version: "1.0.0"
+slug: onnx_polish
+init: false
+arch:
+  - aarch64
+  - amd64
+startup: services
+ports:
+  10300/tcp: 10300
+ports_description:
+  10300/tcp: "Wyoming Protocol"
+options:
+  model: "OpenVoiceOS/yuriyvnv-parakeet-tdt-0.6b-pl-onnx"
+  languages: "pl"
+  default_language: "pl"
+  quantization: "int8"
+schema:
+  model: str
+  languages: str
+  default_language: str
+  quantization: list(none|int8|fp16)
