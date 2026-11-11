@@ -1,6 +1,6 @@
 name: "ONNX ASR Polish"
 description: "Parakeet TDT 0.6B Polish fine-tuned model (Wyoming)"
-version: "1.0.2"
+version: "1.0.3"
 slug: onnx_polish
 init: false
 arch:
@@ -21,8 +21,3 @@ schema:
   languages: str
   default_language: str
   quantization: list(none|int8|fp16)
-environment:
-  STT_MODEL: "{{ .model }}"
-  STT_LANGUAGES: "{{ .languages }}"
-  STT_DEFAULT_LANGUAGE: "{{ .default_language }}"
-  STT_QUANTIZATION: "{{ .quantization }}"
