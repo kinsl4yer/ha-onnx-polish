@@ -21,3 +21,8 @@ schema:
   languages: str
   default_language: str
   quantization: list(none|int8|fp16)
+environment:
+  STT_MODEL: "{{ .model }}"
+  STT_LANGUAGES: "{{ .languages }}"
+  STT_DEFAULT_LANGUAGE: "{{ .default_language }}"
+  STT_QUANTIZATION: "{{ .quantization }}"
