@@ -1,9 +1,9 @@
 # Home Assistant Add-on: ONNX ASR Polish
 
-Add-on uruchamiający jednocześnie dwa modele Speech-to-Text (STT) zoptymalizowane pod język polski, udostępniane przez protokół Wyoming. FastConformer (port 10301) jest bardzo szybki, ale nieco mniej dokładny — dobry do codziennych komend. Parakeet (port 10300) jest wolniejszy, ale zwykle dokładniejszy.
+Add-on uruchamiający jednocześnie dwa modele Speech-to-Text (STT) zoptymalizowane pod język polski, udostępniane przez protokół Wyoming.
 
-- **Port 10300** – Parakeet TDT 0.6B Polish  
-- **Port 10301** – FastConformer Hybrid Large PC Polish  
+- **Port 10300** – Parakeet TDT 0.6B Polish - wolniejszy, ale zwykle dokładniejszy
+- **Port 10301** – FastConformer Hybrid Large PC Polish - bardzo szybki, ale nieco mniej dokładny — dobry do codziennych komend.
 
 Po starcie w Home Assistant pojawią się dwa niezależne serwisy Wyoming, które możesz przypisać do różnych pipeline’ów Voice Assistant.
 
@@ -21,9 +21,6 @@ Po starcie w Home Assistant pojawią się dwa niezależne serwisy Wyoming, któr
 
 - Przy pierwszym uruchomieniu modele zostaną pobrane z Hugging Face (łącznie kilka GB).
 - **Zalecane wolne miejsce na dysku HAOS**: minimum 10–15 GB wolnego miejsca.  
-  Podczas budowania obrazu Docker mogą pojawić się błędy `no space left on device` (szczególnie przy rozpakowywaniu warstw CUDA). W razie potrzeby:
-  - Zwiększ dysk VM (jeśli HAOS działa na Proxmoxie / wirtualizacji)
-  - Wyczyść nieużywane obrazy Docker (`docker system prune` w terminalu HAOS)
 - Add-on działa na architekturach `amd64` i `aarch64`.
 - Na maszynach bez GPU (np. Intel N100) modele działają na CPU (ONNX Runtime automatycznie przechodzi na `CPUExecutionProvider`).
 
