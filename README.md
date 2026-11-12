@@ -20,10 +20,9 @@ Add-on uruchamiający jednocześnie dwa modele Speech-to-Text (STT) zoptymalizow
 
 ### Wymagania i uwagi instalacyjne
 
-- Przy pierwszym uruchomieniu modele zostaną pobrane z Hugging Face (łącznie kilka GB).
-- **Zalecane wolne miejsce na dysku HAOS**: minimum 10–15 GB wolnego miejsca.  
-- Add-on działa na architekturach `amd64` i `aarch64`.
-- Na maszynach bez GPU (np. Intel N100) modele działają na CPU (ONNX Runtime automatycznie przechodzi na `CPUExecutionProvider`).
+- Przy pierwszym uruchomieniu modele zostaną pobrane z Hugging Face - zalecana cierpliwość (łącznie kilka GB).
+- **Zalecane wolne miejsce na dysku HAOS**: minimum 10–15 GB wolnego miejsca.
+- W moim przypadku HAOS stoi jako VM na Proxmox na architekturze Intel N100 bez dedykowanego GPU
 
 ## Użycie w Home Assistant
 
