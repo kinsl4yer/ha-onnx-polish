@@ -5,7 +5,7 @@ Niniejsze repozytorium to hobbystyczny vibe coding z użyciem modelu Grok.
 Add-on uruchamiający jednocześnie dwa modele Speech-to-Text (STT) zoptymalizowane pod język polski, udostępniane przez protokół Wyoming:
 
 - Parakeet TDT 0.6B Polish - wolniejszy, ale zwykle dokładniejszy (`https://huggingface.co/OpenVoiceOS/parakeet-tdt-0.6b-polish-coreml`)
-- FastConformer Hybrid Large PC Polish - bardzo szybki, ale nieco mniej dokładny — dobry do codziennych komend (`https://huggingface.co/nvidia/stt_pl_fastconformer_hybrid_large_pc`)
+- FastConformer Hybrid Large PC Polish - bardzo szybki, ale nieco mniej dokładny (`https://huggingface.co/nvidia/stt_pl_fastconformer_hybrid_large_pc`)
 
 
 ## Instalacja
