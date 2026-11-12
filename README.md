@@ -1,5 +1,7 @@
 # Home Assistant Add-on: ONNX ASR Polish
 
+Niniejsze repozytorium to hobbystyczny vibe coding z użyciem modelu Grok.
+
 Add-on uruchamiający jednocześnie dwa modele Speech-to-Text (STT) zoptymalizowane pod język polski, udostępniane przez protokół Wyoming.
 
 - **Port 10300** – Parakeet TDT 0.6B Polish - wolniejszy, ale zwykle dokładniejszy
