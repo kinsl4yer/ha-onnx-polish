@@ -1,37 +1,49 @@
 # Home Assistant Add-on: ONNX ASR Polish
 
-Niniejsze repozytorium to hobbystyczny vibe coding z użyciem modelu Grok.
+Add-on uruchamia jeden model Speech-to-Text dla języka polskiego i udostępnia go protokołem Wyoming:
 
-Add-on uruchamiający jednocześnie dwa modele Speech-to-Text (STT) zoptymalizowane pod język polski, udostępniane przez protokół Wyoming:
+* FastConformer Hybrid Large PC Polish (`OpenVoiceOS/stt_pl_fastconformer_hybrid_large_pc_onnx`), port **10301**
 
-- Parakeet TDT 0.6B Polish - wolniejszy, ale zwykle dokładniejszy (`https://huggingface.co/OpenVoiceOS/parakeet-tdt-0.6b-polish-coreml`)
-- FastConformer Hybrid Large PC Polish - bardzo szybki, ale nieco mniej dokładny (`https://huggingface.co/nvidia/stt_pl_fastconformer_hybrid_large_pc`)
+Model ma około 114 mln parametrów i jest eksportem fp32. Wariant int8 tego architektury nie działa na CPU: dynamiczna kwantyzacja wstawia węzły `ConvInteger`, których ONNX Runtime nie wykonuje. Dlatego add-on nie ustawia kwantyzacji.
 
+Domyślne urządzenie to **CPU**. Obraz bazowy `lmo3/wyoming-onnx-stt` zakłada CUDA, a ta instalacja stoi na Intel N100 bez GPU.
 
 ## Instalacja
 
 1. Przejdź do **Ustawienia → Aplikacje → Zainstaluj aplikację**
 2. Kliknij menu **⋮** → **Repozytoria**
-3. Dodaj adres URL tego repozytorium:  
-   `https://github.com/kinsl4yer/ha-onnx-polish`
+3. Dodaj adres URL tego repozytorium: `https://github.com/kinsl4yer/ha-onnx-polish`
 4. Znajdź **ONNX ASR Polish** i zainstaluj
 5. Uruchom add-on
-6. Dodaj integrację **Wyoming** w Home Assistant (powinna zostać wykryta automatycznie)
+6. Dodaj integrację **Wyoming** (host add-onu, port 10301)
 
-### Wymagania i uwagi instalacyjne
+### Aktualizacja z wersji z dwoma modelami
 
-- Przy pierwszym uruchomieniu modele zostaną pobrane z Hugging Face - zalecana cierpliwość (łącznie kilka GB).
-- **Zalecane wolne miejsce na dysku HAOS**: minimum 10–15 GB wolnego miejsca.
-- W moim przypadku HAOS stoi jako VM na Proxmox na architekturze Intel N100 bez dedykowanego GPU
+Wersja 1.2.0 usuwa Parakeet (port 10300) i zmienia schemat opcji. Po aktualizacji otwórz konfigurację add-onu i zapisz ją. Stare klucze `parakeet_model` i `quantization_*` nie przechodzą walidacji, więc Supervisor nie wystartuje kontenera, dopóki konfiguracja nie zostanie zapisana od nowa.
+
+Integrację Wyoming **Parakeet** (port 10300) usuń. Zostaw wpis FastConformer na porcie **10301**. Lepiej podać nazwę DNS add-onu niż adres `172.30.32.x`, bo ten adres zmienia się po odtworzeniu kontenera.
+
+## Konfiguracja
+
+| Opcja | Domyślnie | Opis |
+| --- | --- | --- |
+| model | `OpenVoiceOS/stt_pl_fastconformer_hybrid_large_pc_onnx` | Repo modelu na Hugging Face |
+| language | `pl` | Język reklamowany w Wyoming |
+| device | `cpu` | `cpu` albo `cuda` |
 
 ## Użycie w Home Assistant
 
-1. Po uruchomieniu add-onu dodaj integrację **Wyoming**.
-2. Powinny pojawić się dwa serwisy:
-   - `wyoming-parakeet-pl` (port 10300)
-   - `wyoming-fastconformer-pl` (port 10301)
-3. W **Ustawienia → Voice assistants** utwórz lub edytuj pipeline i wybierz jeden z modeli jako Speech-to-text.
-4. Ustaw język na **polski**.
+1. Po uruchomieniu dodaj integrację **Wyoming** na porcie 10301.
+2. W **Ustawienia → Voice assistants** ustaw ten silnik jako Speech-to-text.
+3. Ustaw język na **polski**.
+
+Proces nasłuchu jest podnoszony ponownie, gdy ONNX Runtime zakończy się błędem albo sygnałem OOM. Supervisor dodatkowo sprawdza port 10301 i restartuje add-on, gdy port przestanie odpowiadać.
+
+## Wymagania
+
+* Przy pierwszym uruchomieniu model zostanie pobrany z Hugging Face.
+* Zalecane wolne miejsce na dysku HAOS: kilka GB na cache modelu.
+* Sprawdzone na HAOS jako VM na Proxmox, Intel N100, bez GPU.
 
 ## Licencja
 
