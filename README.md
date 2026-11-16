@@ -17,12 +17,6 @@ Domyślne urządzenie to **CPU**. Obraz bazowy `lmo3/wyoming-onnx-stt` zakłada 
 5. Uruchom add-on
 6. Dodaj integrację **Wyoming** (host add-onu, port 10301)
 
-### Aktualizacja z wersji z dwoma modelami
-
-Wersja 1.2.0 usuwa Parakeet (port 10300) i zmienia schemat opcji. Po aktualizacji otwórz konfigurację add-onu i zapisz ją. Stare klucze `parakeet_model` i `quantization_*` nie przechodzą walidacji, więc Supervisor nie wystartuje kontenera, dopóki konfiguracja nie zostanie zapisana od nowa.
-
-Integrację Wyoming **Parakeet** (port 10300) usuń. Zostaw wpis FastConformer na porcie **10301**. Lepiej podać nazwę DNS add-onu niż adres `172.30.32.x`, bo ten adres zmienia się po odtworzeniu kontenera.
-
 ## Konfiguracja
 
 | Opcja | Domyślnie | Opis |
